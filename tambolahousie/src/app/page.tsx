@@ -1,11 +1,9 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        Tambola
-      </div>
+    <main className="flex flex-col items-center  p-4">
+      <div className="font-bold text-4xl font-sans">TAMBOLA</div>
     </main>
-  )
+  );
 }
