@@ -18,29 +18,47 @@ export default function NumberGenerator() {
   }, []);
 
   // Generate random number and update selectedNumbers
-  const generateNumber = () => {
-    const availableNumbers = numbers.filter(
-      (num) => !selectedNumbers.includes(num)
-    );
-    if (availableNumbers.length === 0) {
-      alert("All numbers have been selected!");
-      return;
-    }
+  //   const generateNumber = () => {
+  //     const availableNumbers = numbers.filter(
+  //       (num) => !selectedNumbers.includes(num)
+  //     );
+  //     if (availableNumbers.length === 0) {
+  //       alert("All numbers have been selected!");
+  //       return;
+  //     }
 
-    const randomIndex = Math.floor(Math.random() * availableNumbers.length);
-    const selectedNumber = availableNumbers[randomIndex];
+  //     const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+  //     const selectedNumber = availableNumbers[randomIndex];
 
-    const updatedSelectedNumbers = [...selectedNumbers, selectedNumber];
-    setSelectedNumbers(updatedSelectedNumbers);
-    setGeneratedNumber(selectedNumber);
+  //     const updatedSelectedNumbers = [...selectedNumbers, selectedNumber];
+  //     setSelectedNumbers(updatedSelectedNumbers);
+  //     setGeneratedNumber(selectedNumber);
 
-    // Store selectedNumbers in local storage
-    localStorage.setItem(
-      "selectedNumbers",
-      JSON.stringify(updatedSelectedNumbers)
-    );
-    console.log(updatedSelectedNumbers, "updatedSelectedNumbers");
-  };
+  //     // Store selectedNumbers in local storage
+  //     localStorage.setItem(
+  //       "selectedNumbers",
+  //       JSON.stringify(updatedSelectedNumbers)
+  //     );
+  //     console.log(updatedSelectedNumbers, "updatedSelectedNumbers");
+  //   };
+
+  function generateNumber() {
+    console.log("clicked");
+    // Generate a random number between 1 and 90
+    const randomNumber = Math.floor(Math.random() * 90) + 1;
+
+    // Store the random number in local storage
+    localStorage.setItem("randomNumber", randomNumber.toString());
+
+    return randomNumber;
+  }
+
+    const handleGenerateNumberClick = () => {
+      const random = generateNumber();
+      setGeneratedNumber(random);
+    };
+
+  // Call the function to generate and store the random number
 
   // Create an array of numbers from 1 to 90
   const numbers = Array.from({ length: 90 }, (_, index) => index + 1);
@@ -60,14 +78,14 @@ export default function NumberGenerator() {
       >
         <div
           onClick={resetNumbers}
-          className="h-10 w-36 bg-slate-900  text-white items-center flex cursor-pointer rounded-lg"
+          className="h-10 w-36 bg-slate-900  text-white items-center flex cursor-pointer rounded-lg hover:bg-slate-600"
           style={{ padding: "10px" }}
         >
-          <div className="ml-4 ">New Game</div>
+          <div className="ml-6 ">New Game</div>
         </div>
         <div
-          onClick={generateNumber}
-          className="h-10 w-36 bg-slate-900 text-white mt-4 items-center flex cursor-pointer rounded-lg"
+          onClick={handleGenerateNumberClick}
+          className="h-10 w-36 bg-slate-900 text-white mt-4 items-center flex cursor-pointer rounded-lg hover:bg-slate-600"
         >
           <div className="ml-2 ">Generate Number</div>
         </div>
