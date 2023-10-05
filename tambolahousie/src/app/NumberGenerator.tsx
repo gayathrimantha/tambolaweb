@@ -39,6 +39,7 @@ export default function NumberGenerator() {
       "selectedNumbers",
       JSON.stringify(updatedSelectedNumbers)
     );
+    console.log(updatedSelectedNumbers, "updatedSelectedNumbers");
   };
 
   // Create an array of numbers from 1 to 90
@@ -53,10 +54,10 @@ export default function NumberGenerator() {
 
   return (
     <div>
-      {/* <div>
+      <div>
         <button onClick={generateNumber}>Generate Number</button>
         <button onClick={resetNumbers}>New Game</button>
-      </div> */}
+      </div>
       <div className="flex flex-row w-full flex-wrap ">
         {numbers.map((number) => (
           <div
