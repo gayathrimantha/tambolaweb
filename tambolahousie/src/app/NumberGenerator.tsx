@@ -54,11 +54,25 @@ export default function NumberGenerator() {
 
   return (
     <div>
-      <div>
-        <button onClick={generateNumber}>Generate Number</button>
-        <button onClick={resetNumbers}>New Game</button>
+      <div
+        className="mb-[-5rem]"
+        style={{ marginLeft: "70px", marginTop: "20px" }}
+      >
+        <div
+          onClick={resetNumbers}
+          className="h-10 w-36 bg-slate-900  text-white items-center flex cursor-pointer rounded-lg"
+          style={{ padding: "10px" }}
+        >
+          <div className="ml-4 ">New Game</div>
+        </div>
+        <div
+          onClick={generateNumber}
+          className="h-10 w-36 bg-slate-900 text-white mt-4 items-center flex cursor-pointer rounded-lg"
+        >
+          <div className="ml-2 ">Generate Number</div>
+        </div>
       </div>
-      <div className="flex flex-row w-full flex-wrap ">
+      <div className="flex flex-row  flex-wrap ml-96 mr-2 mt-[-6rem]">
         {numbers.map((number) => (
           <div
             key={uuid()} // Use a unique key for each number element
@@ -70,7 +84,7 @@ export default function NumberGenerator() {
                   ? "green" // Color for selected numbers
                   : "white", // Default color
             }}
-            className="border-x-2 border-y-2 w-16 h-16 items-center flex justify-center mx-3 my-3"
+            className="border-x-2 border-y-2 w-20 h-20 items-center flex justify-center mx-5 my-1 p-5"
           >
             {number}
           </div>
