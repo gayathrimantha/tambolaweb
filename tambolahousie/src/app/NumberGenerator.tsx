@@ -8,6 +8,8 @@ export default function NumberGenerator() {
   const [selectedNumbers, setSelectedNumbers] = useState<number[]>([]);
   const [generatedNumber, setGeneratedNumber] = useState<number | null>(null);
 
+  const numbers = Array.from({ length: 90 }, (_, index) => index + 1);
+
   // Load selected numbers from local storage on component mount
   useEffect(() => {
     const storedNumbers = localStorage.getItem("selectedNumbers");
@@ -15,53 +17,38 @@ export default function NumberGenerator() {
       const parsedNumbers = JSON.parse(storedNumbers);
       setSelectedNumbers(parsedNumbers);
     }
+    console.log("WORKINGG");
   }, []);
 
   // Generate random number and update selectedNumbers
-  //   const generateNumber = () => {
-  //     const availableNumbers = numbers.filter(
-  //       (num) => !selectedNumbers.includes(num)
-  //     );
-  //     if (availableNumbers.length === 0) {
-  //       alert("All numbers have been selected!");
-  //       return;
-  //     }
+  const generateNumber = () => {
+    console.log("cllicked");
+    const availableNumbers = numbers.filter(
+      (num) => !selectedNumbers.includes(num)
+    );
+    if (availableNumbers.length === 0) {
+      alert("All numbers have been selected!");
+      return;
+    }
 
-  //     const randomIndex = Math.floor(Math.random() * availableNumbers.length);
-  //     const selectedNumber = availableNumbers[randomIndex];
+    const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+    const selectedNumber = availableNumbers[randomIndex];
 
-  //     const updatedSelectedNumbers = [...selectedNumbers, selectedNumber];
-  //     setSelectedNumbers(updatedSelectedNumbers);
-  //     setGeneratedNumber(selectedNumber);
+    const updatedSelectedNumbers = [...selectedNumbers, selectedNumber];
+    setSelectedNumbers(updatedSelectedNumbers);
+    setGeneratedNumber(selectedNumber);
 
-  //     // Store selectedNumbers in local storage
-  //     localStorage.setItem(
-  //       "selectedNumbers",
-  //       JSON.stringify(updatedSelectedNumbers)
-  //     );
-  //     console.log(updatedSelectedNumbers, "updatedSelectedNumbers");
-  //   };
-
-  function generateNumber() {
-    console.log("clicked");
-    // Generate a random number between 1 and 90
-    const randomNumber = Math.floor(Math.random() * 90) + 1;
-
-    // Store the random number in local storage
-    localStorage.setItem("randomNumber", randomNumber.toString());
-
-    return randomNumber;
-  }
-
-    const handleGenerateNumberClick = () => {
-      const random = generateNumber();
-      setGeneratedNumber(random);
-    };
+    // Store selectedNumbers in local storage
+    localStorage.setItem(
+      "selectedNumbers",
+      JSON.stringify(updatedSelectedNumbers)
+    );
+    console.log(updatedSelectedNumbers, "updatedSelectedNumbers");
+  };
 
   // Call the function to generate and store the random number
 
   // Create an array of numbers from 1 to 90
-  const numbers = Array.from({ length: 90 }, (_, index) => index + 1);
 
   // Reset selected numbers and local storage
   const resetNumbers = () => {
@@ -84,7 +71,7 @@ export default function NumberGenerator() {
           <div className="ml-6 ">New Game</div>
         </div>
         <div
-          onClick={handleGenerateNumberClick}
+          onClick={generateNumber}
           className="h-10 w-36 bg-slate-900 text-white mt-4 items-center flex cursor-pointer rounded-lg hover:bg-slate-600"
         >
           <div className="ml-2 ">Generate Number</div>
